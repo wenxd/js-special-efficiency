@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js</title>
+</head>
+<body>
+    <div>1.动画移动方法</div>
+</body>
+</html>
+<script>
+    
+    window.onload = funcion() {
+        //1.动画效果移动
+        function animate(ele,target){
+            clearInterval(ele.timer);
+            var speed = target>ele.offsetLeft?10:-10;
+            ele.timer = setInterval(function () {
+                var val = target - ele.offsetLeft;
+                ele.style.left = ele.offsetLeft + speed + "px";
+                if(Math.abs(val)<Math.abs(speed)){
+                    ele.style.left = target + "px";
+                    clearInterval(ele.timer);
+                }
+            },10)
+        }
+    }
+
+
+</script>
