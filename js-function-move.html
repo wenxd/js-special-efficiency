@@ -11,7 +11,7 @@
 <script>
     window.onload = funcion() {
         //1.动画效果移动
-        function move(ele,target){
+        function move(ele, target){
             clearInterval(ele.timer);
             var speed = target > ele.offsetLeft ? 10 : -10;
             ele.timer = setInterval(function () {
@@ -21,7 +21,21 @@
                     ele.style.left = target + "px";
                     clearInterval(ele.timer);
                 }
-            }, 10);
+            }, 25);
         }
+        //缓慢移动
+        function slowMove(ele, target) {
+           clearInterval(ele.timer);
+           ele.timer = setInterval(function() {
+               var step = (target - ele.offsetLeft) / 10;
+               step = step > 0 ? Math.ceil(step) : Math.floor(step);
+
+               ele.style.left = ele.offsetLeft + step + 'px';
+               if (Math.abs(target - ele.offsetLeft) <= Math.abs(step)) {
+                   ele.style.left = target + 'px';
+                   clearInterval(ele.timer);
+               }
+           }, 25);
+       }
     }
 </script>
