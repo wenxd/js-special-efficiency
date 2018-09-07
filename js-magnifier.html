@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    .box {
+        width: 200px;
+        height: 200px;
+        margin: 100px;
+        border:1px solid red;
+        position: relative;
+    }
+    .mask {
+        width: 100px;
+        height: 100px;
+        background-color: lightyellow;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: none;
+    }
+    .big {
+        width: 400px;
+        height: 400px;
+        position: absolute;
+        left: 450px;
+        border: 1px solid #ccc;
+        overflow: hidden;
+        top: 100px;
+        display: none;
+    }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <img src="./images/xiao.jpg" alt="" width="200">
+        <div class="mask"></div>
+    </div>
+    <div class="big">
+        <img src="./images/da.jpg" alt="" width="800">
+    </div>
+</body>
+</html>
+
+<script>
+    window.onload = function() {
+        var box = document.getElementsByClassName('box')[0];
+        var big = document.getElementsByClassName('big')[0];
+        var mask = box.children[1];
+        var bigImg = big.children[0];
+        box.onmouseenter = function() {
+            mask.style.display   = 'block';
+            big.style.display = 'block';
+        }
+        box.onmouseleave = function() {
+            mask.style.display   = 'none';
+            big.style.display = 'none';
+        }
+        
+        box.onmousemove = function(e) {
+            event = e || window.event;
+            var pagex = event.pageX;
+            var pagey = event.pageY;
+            var x = pagex - box.offsetLeft - mask.offsetWidth/2;
+            var y = pagey - box.offsetTop - mask.offsetHeight/2;
+            
+            if (x <= 0 ) {
+                x = 0;
+            }
+            if (y <= 0) {
+                y = 0;
+            }
+            if (x > (box.offsetWidth - mask.offsetWidth)) {
+                x = box.offsetWidth - mask.offsetWidth;
+            }
+
+            if (y > (box.offsetHeight - mask.offsetHeight)) {
+                y = box.offsetHeight - mask.offsetHeight;
+            }
+
+            mask.style.left = x + 'px';
+            mask.style.top = y + 'px';
+            
+            var rate = bigImg.offsetWidth / box.offsetWidth;
+            
+            bigImg.style.marginTop = -rate * y + 'px';
+            bigImg.style.marginLeft = -rate * x + 'px';
+        }
+    }
+</script>
