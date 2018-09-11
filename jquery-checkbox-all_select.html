@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th><input type="checkbox" class="select_all"></th>
+                <th>name</th>
+                <th>sex</th>
+                <th>age</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox" class="select"></td>
+                <td>wang</td>
+                <td>man</td>
+                <td>29</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="select"></td>
+                <td>li</td>
+                <td>woman</td>
+                <td>20</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="select"></td>
+                <td>zhao</td>
+                <td>man</td>
+                <td>18</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="select"></td>
+                <td>xiao</td>
+                <td>man</td>
+                <td>25</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="select"></td>
+                <td>zhang</td>
+                <td>woman</td>
+                <td>21</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+<script>
+    //全选
+    $('.select_all').click(function (e) {
+            if ($(this).prop("checked")) {
+                $('.select').prop("checked",true);
+            } else {
+                $('.select').prop("checked",false);
+            }
+        });
+
+        //子选择
+        var select_num = $('.select').length;
+        $('.select').click(function (e) {
+            if ($(this).prop("checked")) {
+                var n = 0;
+                $('.select').each(function (index, element) {
+                    if ($(element).prop("checked")) {
+                        n++;
+                    }
+                });
+                if (n == select_num) {
+                    $('.select_all').prop("checked",true);
+                }
+            } else {
+                $('.select_all').prop("checked",false);
+            }
+        });
+
+</script>
