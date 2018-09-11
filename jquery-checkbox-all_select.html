@@ -61,23 +61,21 @@
                 $('.select').prop("checked",false);
             }
         });
-
-        //子选择
-        var select_num = $('.select').length;
-        $('.select').click(function (e) {
-            if ($(this).prop("checked")) {
-                var n = 0;
-                $('.select').each(function (index, element) {
-                    if ($(element).prop("checked")) {
-                        n++;
-                    }
-                });
-                if (n == select_num) {
-                    $('.select_all').prop("checked",true);
+    //子选择
+    var select_num = $('.select').length;
+    $('.select').click(function (e) {
+        if ($(this).prop("checked")) {
+            var n = 0;
+            $('.select').each(function (index, element) {
+                if ($(element).prop("checked")) {
+                    n++;
                 }
-            } else {
-                $('.select_all').prop("checked",false);
+            });
+            if (n == select_num) {
+                $('.select_all').prop("checked",true);
             }
-        });
-
+        } else {
+            $('.select_all').prop("checked",false);
+        }
+    });
 </script>
