@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th><input type="checkbox" class="select_all"></th>
+                <th>name</th>
+                <th>sex</th>
+                <th>age</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox" class="select"></td>
+                <td>wang</td>
+                <td>man</td>
+                <td>29</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="select"></td>
+                <td>li</td>
+                <td>woman</td>
+                <td>20</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="select"></td>
+                <td>zhao</td>
+                <td>man</td>
+                <td>18</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="select"></td>
+                <td>xiao</td>
+                <td>man</td>
+                <td>25</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="select"></td>
+                <td>zhang</td>
+                <td>woman</td>
+                <td>21</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
+<script>
+    window.onload = function() {
+        var select_all = document.getElementsByClassName('select_all')[0];
+        var select     = document.getElementsByClassName('select');
+        select_all.onclick = function() {
+            if (select_all.checked) {
+                for (var i = 0; i < select.length; i++) {
+                    select[i].checked = true;
+                }
+            } else {
+                for (var i = 0; i < select.length; i++) {
+                    select[i].checked = false;
+                }
+            }
+        }
+
+        for (var i = 0; i < select.length; i++) {
+            select[i].onclick = function() {
+                if (this.checked) {
+                    var n = 0;
+                    for (var j = 0; j < select.length; j++) {
+                        if (select[j].checked) {
+                            n++;
+                        }
+                    }
+                    if (n == select.length) {
+                        select_all.checked = true;
+                    }
+                } else {
+                    select_all.checked = false;
+                }
+            }
+        }
+    }
+</script>
