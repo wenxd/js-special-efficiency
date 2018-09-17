@@ -1,1 +1,98 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0; 
+            padding:0;
+        }
+        div{
+            width: 1150px;
+            height: 800px;
+            margin:50px auto;
+            border:1px solid red;
+            overflow: hidden;
+        }
+        div li {
+            width: 240px;
+            height: 800px;
+            float: left;
+        }
+        div ul {
+            width: 1300px;
+        }
+        ul {
+            list-style: none
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+</html>
+<script>
+    window.onload = function() {
+        var div = document.getElementsByTagName('div')[0];
+        var liArr = document.getElementsByTagName('li');
+        
+        for (var i = 0; i < liArr.length; i++) {
+            liArr[i].style.background = "url(images/"+(i+1)+".jpg) no-repeat";
+            liArr[i].onmouseover = function() {
+                for (var j = 0; j < liArr.length; j++) {
+                    animate(liArr[j],{"width":100});
+                }
+                animate(this,{"width":800})
+            }
+        }
+        div.onmouseout = function () {
+            for(var j=0;j<liArr.length;j++){
+                animate(liArr[j],{"width":240});
+            }
+        }
+
+        function animate(element, json) {
+            clearInterval(element.timer);
+
+            element.timer = setInterval(function(){
+                var is_open = true;
+
+                for (var k in json) {
+                    var leng = parseInt(getStyle(element, k)) || 0;
+                    var step = (json[k] - leng) / 10;
+
+                    step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                    leng += step;
+                    element.style[k] = leng + 'px';
+
+                    if(json[k] !== leng){
+                        is_open = false;
+                    }
+                }
+
+                if (is_open) {
+                    clearInterval(element.timer);
+                }
+            }, 30);
+        }
+
+        function getStyle(element, attr) {
+            if (window.getComputedStyle) {
+                return window.getComputedStyle(element, null)[attr];
+            }
+            return element.currentStyle[attr];
+        }
+    }
+</script>
