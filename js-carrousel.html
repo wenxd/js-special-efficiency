@@ -69,11 +69,11 @@
 <div class="wrap">
     <div class="slide">
         <ul>
-            <li><a href="#"><img src="images/1.jpg" alt=""/></a></li>
-            <li><a href="#"><img src="images/2.jpg" alt=""/></a></li>
-            <li><a href="#"><img src="images/3.jpg" alt=""/></a></li>
-            <li><a href="#"><img src="images/4.jpg" alt=""/></a></li>
-            <li><a href="#"><img src="images/5.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="images/mi/1.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="images/mi/2.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="images/mi/3.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="images/mi/4.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="images/mi/5.jpg" alt=""/></a></li>
         </ul>
         <div class="arrow">
             <a href="javascript:void(0)" class="prev"></a>
@@ -133,9 +133,7 @@
         slide.onmouseleave = function() {
             animate(arrow, {"opacity":0})
         }
-        init();
-        
-        
+        move();
         btns = arrow.children;
         for (var k in btns) {
             btns[k].onclick = function() {
@@ -188,7 +186,7 @@
                 if (is_open) {
                     clearInterval(element.timer);
                 }
-            }, 30);
+            }, 20);
         }
         function getStyle(element, attr) {
             if (window.getComputedStyle) {
@@ -198,12 +196,14 @@
         }
 
         function move(go) {
-            if (go) {
-                var element = json.shift();
-                json.push(element);
-            } else {
-                var element = json.pop();
-                json.unshift(element);
+            if (go !== undefined) {
+                if (go) {
+                    var element = json.shift();
+                    json.push(element);
+                } else {
+                    var element = json.pop();
+                    json.unshift(element);
+                }
             }
             init();
         }
