@@ -53,27 +53,43 @@
 </html>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
 <script>
+    //普通方法
+    //全选
+//     $('.select_all').click(function (e) {
+//             if ($(this).prop("checked")) {
+//                 $('.select').prop("checked",true);
+//             } else {
+//                 $('.select').prop("checked",false);
+//             }
+//         });
+//     子选择
+//     var select_num = $('.select').length;
+//     $('.select').click(function (e) {
+//         if ($(this).prop("checked")) {
+//             var n = 0;
+//             $('.select').each(function (index, element) {
+//                 if ($(element).prop("checked")) {
+//                     n++;
+//                 }
+//             });
+//             if (n == select_num) {
+//                 $('.select_all').prop("checked",true);
+//             }
+//         } else {
+//             $('.select_all').prop("checked",false);
+//         }
+//     });
+    
+    
+    //优化版本
     //全选
     $('.select_all').click(function (e) {
-            if ($(this).prop("checked")) {
-                $('.select').prop("checked",true);
-            } else {
-                $('.select').prop("checked",false);
-            }
+            $('.select').prop("checked",$(this).prop("checked"));
         });
     //子选择
-    var select_num = $('.select').length;
     $('.select').click(function (e) {
-        if ($(this).prop("checked")) {
-            var n = 0;
-            $('.select').each(function (index, element) {
-                if ($(element).prop("checked")) {
-                    n++;
-                }
-            });
-            if (n == select_num) {
-                $('.select_all').prop("checked",true);
-            }
+        if ($('.select').length == $('.select:checked').length) {
+            $('.select_all').prop("checked",true);
         } else {
             $('.select_all').prop("checked",false);
         }
