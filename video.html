@@ -122,6 +122,7 @@
 <script>
     var video = document.querySelector('video');
     var playBtn = document.querySelector('.switch');
+    var progress = document.querySelector('.progress');
     var currProgress = document.querySelector('.curr-progress');
     var currTime = document.querySelector('.curr-time');
     var totalTime = document.querySelector('.total-time');
@@ -167,5 +168,14 @@
 
     extend.onclick = function(){
         video.webkitRequestFullScreen();
+    }
+
+    progress.onclick = function(e){
+        var percent = e.offsetX / 432;
+        currProgress.style.width = percent * 100 + '%';
+        video.currentTime = percent * video.duration;
+        video.play();
+        playBtn.classList.remove('fa-play-circle');
+        playBtn.classList.add('fa-pause');
     }
 </script>
